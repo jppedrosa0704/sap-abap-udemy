@@ -51,12 +51,10 @@ CALL FUNCTION 'ZSOMA'
     NOT_ZERO       = 1
     OTHERS         = 2.
 
-IF sy-subrc = 1.
-  WRITE: 'Erro: algum dos valores é zero.'.
-ELSEIF sy-subrc = 0.
-  WRITE lv_output.
+IF sy-subrc <> 0.
+  MESSAGE 'A entrada deve ser diferente de zero' TYPE 'I' DISPLAY LIKE 'E'.
 ELSE.
-  WRITE: 'Erro inesperado.'.
+  WRITE lv_output.
 ENDIF.
 
 🎯 O que este exemplo ensina
