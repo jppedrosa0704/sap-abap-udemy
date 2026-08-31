@@ -1,12 +1,13 @@
-# ZSOMA_NUMEROS – Exemplo de chamada de Function Module no ABAP
+# ZSOMA_NUMEROS – Exemplo de Function Module com validação e exceção
 
-Este programa demonstra como chamar um *Function Module* criado na SE37, utilizando parâmetros de entrada e saída.  
-O Function Module utilizado chama-se **ZSOMA**, responsável por somar dois números do tipo `NUMC`.
+Este programa demonstra como chamar um *Function Module* criado na SE37, utilizando parâmetros de entrada, saída e tratamento de exceções.  
+O Function Module utilizado chama-se **ZSOMA**, responsável por validar os valores recebidos e somar dois números do tipo `NUMC`.
 
 ---
 
 ## 📌 Objetivo do Programa
-O report **ZSOMA_NUMEROS** lê dois valores numéricos informados pelo utilizador e envia esses valores ao Function Module **ZSOMA**, que retorna a soma através do parâmetro `E_OUTPUT`.
+O report **ZSOMA_NUMEROS** lê dois valores numéricos informados pelo utilizador, valida se ambos são diferentes de zero e envia esses valores ao Function Module **ZSOMA**, que retorna a soma através do parâmetro `E_OUTPUT`.  
+Caso algum dos valores seja zero, o FM dispara a exceção **NOT_ZERO**.
 
 ---
 
@@ -19,9 +20,19 @@ O report **ZSOMA_NUMEROS** lê dois valores numéricos informados pelo utilizado
 ### **EXPORTING**
 - `E_OUTPUT` – Resultado da soma (`NUMC3`)
 
-### **Lógica interna**
+### **EXCEPTIONS**
+- `NOT_ZERO` – Disparada quando algum dos inputs é igual a zero
+
+---
+
+## 🧠 Lógica interna do FM
+
 ```abap
-E_OUTPUT = I_INPUT1 + I_INPUT2.
+IF I_INPUT1 = 0 OR I_INPUT2 = 0.
+  RAISE NOT_ZERO.
+ELSE.
+  E_OUTPUT = I_INPUT1 + I_INPUT2.
+ENDIF.
 
 REPORT ZSOMA_NUMEROS.
 
@@ -32,20 +43,31 @@ PARAMETERS: p_input1 TYPE numc2,
 
 CALL FUNCTION 'ZSOMA'
   EXPORTING
-    I_INPUTI       = p_input1
+    I_INPUT1       = p_input1
     I_INPUT2       = p_input2
- IMPORTING
-   E_OUTPUT       = lv_output.
-          
-WRITE lv_output.
+  IMPORTING
+    E_OUTPUT       = lv_output
+  EXCEPTIONS
+    NOT_ZERO       = 1
+    OTHERS         = 2.
+
+IF sy-subrc = 1.
+  WRITE: 'Erro: algum dos valores é zero.'.
+ELSEIF sy-subrc = 0.
+  WRITE lv_output.
+ELSE.
+  WRITE: 'Erro inesperado.'.
+ENDIF.
 
 🎯 O que este exemplo ensina
-Como criar um Function Module na SE37
+Como criar um Function Module com validação
 
-Como definir parâmetros IMPORTING e EXPORTING
+Como definir e disparar exceções na SE37
 
-Como chamar o FM dentro de um report
+Como capturar exceções no report via sy-subrc
 
 Como trabalhar com tipos NUMC
 
 Como retornar resultados ao utilizador
+
+
