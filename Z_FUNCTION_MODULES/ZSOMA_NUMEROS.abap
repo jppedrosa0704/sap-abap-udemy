@@ -1,0 +1,15 @@
+REPORT ZSOMA_NUMEROS.
+
+DATA: lv_output TYPE numc3.
+
+PARAMETERS: p_input1 TYPE numc2,
+            p_input2 TYPE numc2.
+
+CALL FUNCTION 'ZSOMA'
+  EXPORTING
+    I_INPUTI       = p_input1
+    I_INPUT2       = p_input2
+ IMPORTING
+   E_OUTPUT       = lv_output.
+          
+WRITE lv_output.
