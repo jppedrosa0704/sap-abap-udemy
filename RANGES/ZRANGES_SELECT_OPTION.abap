@@ -15,8 +15,8 @@ SELECT * from zproduto
 if lt_produtos IS INITIAL.
   WRITE 'nenhum registro encontrado.'.
 ELSE.
-  WRITE 'Registro Encontrado'.
-
+  WRITE / 'Registro Encontrado'.
+  ULINE.
   LOOP AT lt_produtos INTO ls_produto.
     WRITE: / ls_produto-ID,
              ls_produto-PRODUTO,
