@@ -1,5 +1,5 @@
 *-------------------------------------------------------------------------  
-* método         TIPO         VISIBILIDADE             DESCRIÇÃO
+*MÉTODO           TIPO         VISIBILIDADE             DESCRIÇÃO
 *EXIBIR	    Instance Method	      Public	        Exbir detalhes do pedido
 *-------------------------------------------------------------------------  
 
