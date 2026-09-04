@@ -1,3 +1,9 @@
+*-------------------------------------------------------------------------  
+* método             TIPO                       DESCRIÇÃO
+*EXIBIR	    Static Method	Public	           Exbir detalhes do pedido
+*-------------------------------------------------------------------------  
+
+
 REPORT ZCLASSE_STATIC.
 
 
