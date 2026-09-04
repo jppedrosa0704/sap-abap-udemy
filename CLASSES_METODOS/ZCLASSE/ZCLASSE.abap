@@ -3,8 +3,6 @@
 *EXIBIR	    Instance Method	      Public	        Exbir detalhes do pedido
 *-------------------------------------------------------------------------  
 
-
-
 REPORT ZCLASSE.
 
 *DATA: lv_pedido         TYPE EBELN,
