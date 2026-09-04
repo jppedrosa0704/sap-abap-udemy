@@ -30,6 +30,10 @@ Exceção própria ENTRADA_ERRADA
 
 Lógica para validar o número do pedido
 
+Retorno de informações via parâmetros IMPORTING
+
+✔ Exemplo de assinatura do método
+
 METHODS exibir
   IMPORTING
     iv_pedido TYPE ebeln
@@ -47,6 +51,7 @@ METHODS exibir
 IF iv_pedido IS INITIAL.
   RAISE entrada_errada.
 ENDIF.
+
 
 ▶️ Programa: ZCLASSE
 O programa:
@@ -143,6 +148,3 @@ Comunicação entre programa e classe via parâmetros
 
 Estrutura limpa e profissional para projetos ABAP
 
-Retorno de informações via parâmetros IMPORTING
-
-✔ Exemplo de assinatura do método
