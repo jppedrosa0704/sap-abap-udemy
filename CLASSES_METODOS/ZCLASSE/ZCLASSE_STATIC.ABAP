@@ -1,6 +1,6 @@
 *-------------------------------------------------------------------------  
-* método             TIPO                       DESCRIÇÃO
-*EXIBIR	    Static Method	Public	           Exbir detalhes do pedido
+* método         TIPO         VISIBILIDADE             DESCRIÇÃO
+*EXIBIR	    Static Method	      Public	        Exbir detalhes do pedido
 *-------------------------------------------------------------------------  
 
 
