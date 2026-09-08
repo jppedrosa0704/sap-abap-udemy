@@ -1,5 +1,6 @@
 REPORT ZPEDIDOS_MULT_COMPRA.
 
+
 DATA: gv_pedido TYPE ebeln.
 
 SELECT-OPTIONS: s_pedido FOR gv_pedido.
