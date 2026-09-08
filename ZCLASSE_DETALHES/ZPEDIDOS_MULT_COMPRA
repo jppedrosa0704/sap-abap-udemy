@@ -1,0 +1,30 @@
+REPORT ZPEDIDOS_MULT_COMPRA.
+
+DATA: gv_pedido TYPE ebeln.
+
+SELECT-OPTIONS: s_pedido FOR gv_pedido.
+
+DATA(lo_object) = NEW ZCLASSE_DETALHES( ).
+
+LO_OBJECT->BUSCAR_MULT_PEDIDOS(
+  EXPORTING
+    IT_PEDIDO  = s_pedido[] "é necessário por os colchetes quado se trabalha com select option - tabela interna do select-option
+  IMPORTING
+    ET_PEDIDOS = DATA(lt_pedidos)
+    ).
+
+IF lt_pedidos is INITIAL.
+  MESSAGE 'Documento não encontrado.' TYPE 'I' DISPLAY LIKE 'E'.
+ELSE.
+  LOOP AT lt_pedidos INTO DATA(lwa_pedido).
+    WRITE: / lwa_pedido-ebeln,
+             lwa_pedido-ebelp,
+             lwa_pedido-bsart,
+             lwa_pedido-bukrs,
+             lwa_pedido-aedat,
+             lwa_pedido-lifnr,
+             lwa_pedido-matnr,
+             lwa_pedido-menge,
+             lwa_pedido-meins.
+  ENDLOOP.
+ENDIF.
